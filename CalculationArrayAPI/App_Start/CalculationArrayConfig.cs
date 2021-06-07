@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace CalculationArrayAPI
 {
-    public static class WebApiConfig
+    public static class CalculationArrayConfig
     {
         public static void Register(HttpConfiguration config)
         {

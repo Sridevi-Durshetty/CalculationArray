@@ -11,7 +11,7 @@ namespace CalculationArrayAPI
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configure(CalculationArrayConfig.Register);
         }
     }
 }
