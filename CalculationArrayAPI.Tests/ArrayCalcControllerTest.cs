@@ -28,6 +28,24 @@ namespace CalculationArrayAPI.Tests
         }
 
         [TestMethod]       
+        public void ReverseArray__InputNumericProductIds_ShouldReverse()
+        {
+            string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
+            string[] outputLst = new[] { "6", "5", "4", "3", "2", "1" };
+            var result = _arrayCalcController.ArrayReverse(inputLst) as OkNegotiatedContentResult<string[]>;
+            Assert.AreEqual(inputLst,result.Content);           
+        }
+
+        [TestMethod]
+        public void ReverseArray__InputStringProductIds_ShouldReverse()
+        {
+            string[] inputLst = new[] { "A", "B", "C", "D", "E", "F" };
+            string[] outputLst = new[] { "F", "E", "D", "C", "B", "A" };
+            var result = _arrayCalcController.ArrayReverse(inputLst) as OkNegotiatedContentResult<string[]>;
+            Assert.AreEqual(inputLst, result.Content);
+        }
+
+        [TestMethod]       
         public void Deletepart__InputNullProductIds_ThrowBadRequest()
         {
             string[] inputLst = null;
