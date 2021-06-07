@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalculationArrayAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -12,16 +13,20 @@ namespace CalculationArrayAPI.Controllers
     {
         [HttpGet]
         [Route("reverse")]
-        public IHttpActionResult ArrayReverse([FromUri] string[] productIds)
+        public IHttpActionResult ArrayReverse([FromUri] string[] productIds = null)
         {
+            if (productIds == null || (productIds != null && productIds.Count() == 0))
+                throw new ArrayBadException("Please provide productsIds");
             return Ok(productIds);
         }
 
         [HttpGet]
         [Route("deletepart")]
         public IHttpActionResult DeletePart([FromUri] string position, [FromUri] string[] productIds)
-        {           
-             return Ok(productIds);
+        {
+            if (productIds == null || position == null || (productIds != null && productIds.Count() == 0))
+                throw new ArrayBadException("Please provide productsIds and position");
+            return Ok(productIds);
         }
     }
 }
