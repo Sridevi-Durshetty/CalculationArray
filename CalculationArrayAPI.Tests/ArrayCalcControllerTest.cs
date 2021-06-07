@@ -33,7 +33,7 @@ namespace CalculationArrayAPI.Tests
             string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
             string[] outputLst = new[] { "6", "5", "4", "3", "2", "1" };
             var result = _arrayCalcController.ArrayReverse(inputLst) as OkNegotiatedContentResult<string[]>;
-            Assert.AreEqual(inputLst,result.Content);           
+            Assert.IsTrue(outputLst.SequenceEqual(result.Content));           
         }
 
         [TestMethod]
@@ -89,6 +89,33 @@ namespace CalculationArrayAPI.Tests
             string position = "-2";
             var ex = Assert.ThrowsException<ArrayBadException>(() => _arrayCalcController.DeletePart(position, inputLst));
             Assert.AreEqual("Position is out of range", ex.Message);
+        }
+
+        [TestMethod]
+        public void Deletepart__ShouldLessCountOfArray()
+        {
+            string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
+            var result = _arrayCalcController.DeletePart("4",inputLst) as OkNegotiatedContentResult<string[]>;
+            Assert.AreEqual(5, result.Content.Count());
+        }
+
+        [TestMethod]
+        public void Deletepart_NumericProductIds_ShouldDeletePositionItem()
+        {
+            string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
+            string[] outputLst = new[] { "1", "2", "4", "5", "6" };
+            var result = _arrayCalcController.DeletePart("3", inputLst) as OkNegotiatedContentResult<string[]>;
+            Assert.IsTrue(outputLst.SequenceEqual(result.Content));
+        }
+
+
+        [TestMethod]
+        public void Deletepart_StringProductIds_ShouldDeletePositionItem()
+        {
+            string[] inputLst = new[] { "A", "B", "C", "D", "E", "F" };
+            string[] outputLst = new[] { "A", "B", "C", "E", "F" };
+            var result = _arrayCalcController.DeletePart("4", inputLst) as OkNegotiatedContentResult<string[]>;
+            Assert.IsTrue(outputLst.SequenceEqual(result.Content));
         }
     }
 }
