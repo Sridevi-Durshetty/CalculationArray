@@ -12,6 +12,7 @@ namespace CalculationArrayAPI
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(CalculationArrayConfig.Register);
+            UnityConfig.RegisterComponents();
         }
     }
 }
