@@ -41,7 +41,8 @@ namespace CalculationArrayAPI.Controllers
             {
                 throw new ArrayBadException("Position is out of range");
             }
-            return Ok(productIds);
+            else
+                return Ok(_productService.DeletePart(correctPostion, productIds));
         }
     }
 }
