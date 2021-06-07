@@ -12,6 +12,7 @@ namespace CalculationArrayAPI.Controllers
     public class ArrayCalcController : ApiController
     {
         [HttpGet]
+        [ArrayExceptionFilterAttribute]
         [Route("reverse")]
         public IHttpActionResult ArrayReverse([FromUri] string[] productIds = null)
         {
