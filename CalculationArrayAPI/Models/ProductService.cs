@@ -14,7 +14,13 @@ namespace CalculationArrayAPI.Models
 
         public string[] ReverseArray(string[] prod)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < prod.Length / 2; i++)
+            {
+                string temp = prod[i];
+                prod[i] = prod[prod.Length - i - 1];
+                prod[prod.Length - i - 1] = temp;
+            }
+            return prod;
         }
     }
 }

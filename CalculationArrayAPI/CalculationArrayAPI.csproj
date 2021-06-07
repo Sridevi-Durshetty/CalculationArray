@@ -99,6 +99,8 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\CalculationArrayConfig.cs" />
     <Compile Include="Common\ArrayException.cs" />
+    <Compile Include="Common\ArrayExceptionFilterAttribute.cs" />
+    <Compile Include="Common\GlobalExceptionHandler.cs" />
     <Compile Include="Controllers\ArrayCalcController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
