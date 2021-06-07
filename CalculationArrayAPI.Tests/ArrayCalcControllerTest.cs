@@ -50,5 +50,25 @@ namespace CalculationArrayAPI.Tests
             var ex = Assert.ThrowsException<ArrayBadException>(() => controller.DeletePart(position, inputLst));
             Assert.AreEqual("Please provide productsIds and position", ex.Message);
         }
+
+        [TestMethod]
+        public void Deletepart__InputStringPosition_ThrowBadRequest()
+        {
+            string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
+            string position = "ab";
+            var controller = new ArrayCalcController();
+            var ex = Assert.ThrowsException<ArrayBadException>(() => controller.DeletePart(position, inputLst));
+            Assert.AreEqual("position should be numeric", ex.Message);
+        }
+
+        [TestMethod]
+        public void Deletepart__InputNegativePositon_ThrowBadRequest()
+        {
+            string[] inputLst = new[] { "1", "2", "3", "4", "5", "6" };
+            string position = "-2";
+            var controller = new ArrayCalcController();
+            var ex = Assert.ThrowsException<ArrayBadException>(() => controller.DeletePart(position, inputLst));
+            Assert.AreEqual("Position is out of range", ex.Message);
+        }
     }
 }

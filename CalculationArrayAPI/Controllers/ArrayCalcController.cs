@@ -26,6 +26,13 @@ namespace CalculationArrayAPI.Controllers
         {
             if (productIds == null || position == null || (productIds != null && productIds.Count() == 0))
                 throw new ArrayBadException("Please provide productsIds and position");
+            int correctPostion;
+            if (!int.TryParse(position, out correctPostion))
+                throw new ArrayBadException("position should be numeric");
+            else if (correctPostion <= 0 || correctPostion > productIds.Count())
+            {
+                throw new ArrayBadException("Position is out of range");
+            }
             return Ok(productIds);
         }
     }
