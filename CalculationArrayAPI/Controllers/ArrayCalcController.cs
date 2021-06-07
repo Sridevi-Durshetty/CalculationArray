@@ -13,11 +13,18 @@ namespace CalculationArrayAPI.Controllers
     public class ArrayCalcController : ApiController
     {
         private IProductService _productService;
+
         public ArrayCalcController(IProductService productService)
         { 
             _productService = productService;
         }
 
+
+        /// <summary>
+        /// Reverse the Array list
+        /// </summary>
+        /// <param name="productIds"></param>
+        /// <returns></returns>
         [HttpGet]
         [ArrayExceptionFilterAttribute]
         [Route("reverse")]
@@ -28,6 +35,13 @@ namespace CalculationArrayAPI.Controllers
             return Ok(_productService.ReverseArray(productIds));
         }
 
+
+        /// <summary>
+        /// Delete from Array based on position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="productIds"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("deletepart")]
         public IHttpActionResult DeletePart([FromUri] string position, [FromUri] string[] productIds)
